@@ -1,7 +1,12 @@
 package io.midsphere.mapper;
 
 
+import io.midsphere.model.Repository;
+import io.midsphere.model.vo.RepositoryQueryParam;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * 代码仓库 Mapper
@@ -10,4 +15,31 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RepositoryMapper {
 
+    /**
+     * 查询仓库数量
+     * @param queryParam queryParam
+     * @return long
+     */
+    long countByParams(RepositoryQueryParam queryParam);
+
+
+    /**
+     * 分页查询仓库
+     * @param queryParam queryParam
+     * @return List
+     */
+    List<Repository> findPage(RepositoryQueryParam queryParam);
+
+    /**
+     * 根据 RepositoryUrl 查询仓库
+     * @param repositoryUrl repositoryUrl
+     * @return Repository
+     */
+    Optional<Repository> findByRepositoryUrl(String repositoryUrl);
+
+    /**
+     * 查询仓库
+     * @param repository repository
+     */
+    void save(Repository repository);
 }

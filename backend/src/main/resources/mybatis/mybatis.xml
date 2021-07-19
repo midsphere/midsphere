@@ -7,10 +7,21 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultEnumTypeHandler" value="EnumOrdinalTypeHandler"/>
     </settings>
 
+    <!-- 别名设置 -->
+    <typeAliases>
+        <typeAlias type="org.apache.ibatis.type.EnumOrdinalTypeHandler" alias="EnumOrdinalTypeHandler" />
+        <package name="io.midsphere.model"/>
+        <package name="io.midsphere.model.vo"/>
+    </typeAliases>
+
+    <!-- mapper 设置 -->
     <mappers>
         <mapper resource="mybatis/mapper/NodeMapper.xml" />
+        <mapper resource="mybatis/mapper/ProjectMapper.xml" />
+        <mapper resource="mybatis/mapper/RepositoryMapper.xml" />
     </mappers>
 
 

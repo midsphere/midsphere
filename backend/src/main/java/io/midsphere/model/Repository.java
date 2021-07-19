@@ -26,7 +26,7 @@ public class Repository implements Serializable {
     /**
      * 仓库类型
      */
-    private RepositoryEnum repositoryEnum;
+    private RepositoryEnum repositoryType;
 
 
     /**
@@ -38,6 +38,20 @@ public class Repository implements Serializable {
      * 修改时间
      */
     private LocalDateTime modifyAt;
+
+    /**
+     * 关联的 Project
+     */
+    private Project project;
+
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public Integer getId() {
         return id;
@@ -55,12 +69,12 @@ public class Repository implements Serializable {
         this.repositoryUrl = repositoryUrl;
     }
 
-    public RepositoryEnum getRepositoryEnum() {
-        return repositoryEnum;
+    public RepositoryEnum getRepositoryType() {
+        return repositoryType;
     }
 
-    public void setRepositoryEnum(RepositoryEnum repositoryEnum) {
-        this.repositoryEnum = repositoryEnum;
+    public void setRepositoryType(RepositoryEnum repositoryType) {
+        this.repositoryType = repositoryType;
     }
 
     public LocalDateTime getCreateAt() {

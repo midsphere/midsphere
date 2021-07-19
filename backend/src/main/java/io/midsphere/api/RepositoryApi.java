@@ -1,12 +1,13 @@
 package io.midsphere.api;
 
+import io.midsphere.dto.PageDTO;
 import io.midsphere.model.Repository;
+import io.midsphere.model.vo.RepositoryQueryParam;
 import io.midsphere.service.RepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,8 +32,28 @@ public class RepositoryApi {
 
 
     @GetMapping("repositories")
-    public List<Repository> listAll() {
-        return repositoryService.listAll();
+    public PageDTO<Repository> findPage(RepositoryQueryParam queryParam) {
+        return repositoryService.findPage(queryParam);
+    }
+
+
+    @PostMapping("repository")
+    public ResponseEntity<Void> addRepository(@RequestBody Repository repository) {
+        repositoryService.addRepository(repository);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("repository/{id}")
+    public ResponseEntity<Void> deleteRepository(@PathVariable("id") Integer id) {
+        repositoryService.deleteRepository(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("repository/{id}")
+    public ResponseEntity<Void> updateRepository(@PathVariable("id") Integer id, @RequestBody Repository repository) {
+        repository.setId(id);
+        repositoryService.updateRepository(repository);
+        return ResponseEntity.noContent().build();
     }
 
 }
