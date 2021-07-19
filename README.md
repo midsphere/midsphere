@@ -71,8 +71,7 @@ MidSphere 是一个参考 Jenkins 开发的程序变种，旨在增强 CI/CD 能
 如果你在使用过程中有任何的疑问和建议，欢迎提交 [Github Issues](https://github.com/midsphere/midsphere/issues/new) 或者加入到我们的社区与我们进行进一步的沟通交流。
 
 ## 8. 交流群
-### 8.1 QQ 群
-![](QQ.JPG)
+
 
 ## 9. 技术栈
 - 后端：SpringBoot + Mybatis
