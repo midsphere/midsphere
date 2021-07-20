@@ -22,7 +22,6 @@ public interface RepositoryMapper {
      */
     long countByParams(RepositoryQueryParam queryParam);
 
-
     /**
      * 分页查询仓库
      * @param queryParam queryParam
@@ -42,4 +41,23 @@ public interface RepositoryMapper {
      * @param repository repository
      */
     void save(Repository repository);
+
+    /**
+     * 根据 id 查询仓库
+     * @param id id
+     * @return Repository
+     */
+    Optional<Repository> findById(Integer id);
+
+    /**
+     * 根据 id 删除仓库
+     * @param id id
+     */
+    void deleteById(Integer id);
+
+    /**
+     * 更新仓库
+     * @param repository repository
+     */
+    void update(Repository repository);
 }

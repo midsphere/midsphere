@@ -2,6 +2,40 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.midsphere.mapper.RepositoryMapper">
+<mapper namespace="io.midsphere.mapper.ApplicationMapper">
 
+    <resultMap id="BaseResultMap" type="Application">
+        <id property="id" column="id" />
+        <result property="appName" column="app_name" />
+        <result property="appType" column="app_type" typeHandler="EnumOrdinalTypeHandler" />
+        <result property="language" column="app_language" typeHandler="EnumOrdinalTypeHandler" />
+        <result property="createUser" column="create_user" />
+        <result property="createAt" column="create_at" />
+        <result property="modifyAt" column="modify_at" />
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="String">
+        select * from midsphere_application
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteById" parameterType="String">
+        delete from midsphere_application where id = #{id}
+    </delete>
+
+    <select id="findByAppKeyAndProject" resultMap="BaseResultMap">
+        select * from midsphere_application
+        where app_key = #{appKey,jdbcType=VARCHAR}
+        and project_id = #{projectId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="Application">
+        insert into midsphere_application(app_name, app_key, app_type, language, create_user, fk_project_id, create_at, modify_at)
+            values(#{appName,jdbcType=VARCHAR}, #{appKey,jdbcType=VARCHAR},
+                   #{appType, javaType=AppTypeEnum, typeHandler=EnumOrdinalTypeHandler},
+                          #{app_language, javaType=LanguageEnum, typeHandler=EnumOrdinalTypeHandler},
+                          #{createUser,jdbcType=VARCHAR},
+                        #{project.id,jdbcType=VARCHAR},
+                          #{createAt}, #{modifyAt})
+    </insert>
 </mapper>

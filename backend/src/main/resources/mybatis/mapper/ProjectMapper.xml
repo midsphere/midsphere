@@ -8,11 +8,45 @@
         <id property="id" column="id" />
         <result property="projectName" column="project_name" />
         <result property="projectKey" column="project_key" />
+        <result property="status" column="status" typeHandler="EnumOrdinalTypeHandler" />
     </resultMap>
 
     <select id="findByProjectKey" parameterType="string" resultMap="BaseResultMap">
         select * from midsphere_project
         WHERE project_key = #{projectKey,jdbcType=VARCHAR}
     </select>
-    
+
+    <select id="countByParam" parameterType="ProjectQueryParam" resultType="long">
+        select count(1) from midsphere_project
+        <where>
+            <if test="projectKey != null and projectKey != ''">
+                and project_key = #{projectKey,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="findPage" parameterType="ProjectQueryParam" resultMap="BaseResultMap">
+        select * from midsphere_project
+        <where>
+            <if test="projectKey != null and projectKey != ''">
+                and project_key = #{projectKey,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+        limit #{start}, #{offset}
+    </select>
+
+    <select id="findById" parameterType="integer" resultMap="BaseResultMap">
+        select * from midsphere_project where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="Project" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into midsphere_dev.midsphere_project(project_name, project_key, project_owner, project_tester,
+                                                    products_location, status, create_at, modify_at)
+            values (#{projectName,jdbcType=VARCHAR}, #{projectKey,jdbcType=VARCHAR},
+            #{owner,jdbcType=VARCHAR}, #{tester,jdbcType=VARCHAR},
+            #{productsLocation,jdbcType=VARCHAR}, #{status, javaType=StatusEnum, typeHandler=EnumOrdinalTypeHandler},
+            #{createAt}, #{modifyAt})
+    </insert>
 </mapper>

@@ -9,13 +9,37 @@ import java.io.Serializable;
  */
 public abstract class AbstractQueryParam implements Serializable {
 
+    /**
+     * 当前页
+     */
     protected Integer page;
 
+    /**
+     * 分页大小
+     */
     protected Integer size;
 
+    /**
+     * 开始查询位置
+     */
+    protected Integer start;
+
+    /**
+     * 每次查询偏移量
+     */
+    protected Integer offset;
+
+
+    public Integer getOffset() {
+        return getSize();
+    }
+
+    public Integer getStart() {
+        return (getPage()-1) * getSize();
+    }
 
     public Integer getPage() {
-        return page;
+        return Math.max(1, page);
     }
 
     public void setPage(Integer page) {

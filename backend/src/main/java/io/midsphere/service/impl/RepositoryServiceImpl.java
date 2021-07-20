@@ -7,7 +7,6 @@ import io.midsphere.mapper.ProjectMapper;
 import io.midsphere.mapper.RepositoryMapper;
 import io.midsphere.model.Project;
 import io.midsphere.model.Repository;
-import io.midsphere.model.vo.ProjectQueryParam;
 import io.midsphere.model.vo.RepositoryQueryParam;
 import io.midsphere.service.RepositoryService;
 import org.springframework.stereotype.Service;
@@ -75,12 +74,17 @@ public class RepositoryServiceImpl implements RepositoryService {
 
     @Override
     public Integer deleteRepository(Integer id) throws RepositoryException {
-
-        return null;
+        final Repository repository = repositoryMapper.findById(id).orElseThrow(()
+                -> new RepositoryException("repository.notExists", "仓库不存在"));
+        repositoryMapper.deleteById(repository.getId());
+        return 0;
     }
 
     @Override
     public void updateRepository(Repository repository) throws BizException {
+        Repository oldRepository = repositoryMapper.findById(repository.getId()).orElseThrow(()
+                -> new RepositoryException("repository.notExists", "仓库不存在"));
 
+        repositoryMapper.update(repository);
     }
 }

@@ -4,11 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.midsphere.mapper.RepositoryMapper">
 
-
     <resultMap id="BaseResultMap" type="Repository">
         <id property="id" column="id" />
         <result property="repositoryUrl" column="repository_url" />
-        <result property="repositoryType" column="repository_type" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
+        <result property="repositoryType" column="repository_type" typeHandler="EnumOrdinalTypeHandler" />
     </resultMap>
 
 
@@ -44,4 +43,23 @@
     <insert id="save" parameterType="Repository">
 
     </insert>
+
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
+        SELECT * FROM midsphere_repository where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteById" parameterType="integer">
+        delete from midsphere_respository where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <update id="update" parameterType="Repository">
+        update midsphere_repository
+            <set>
+                <if test="repositoryUrl != null and repositoryUrl != ''">
+                    repository_url = #{repositoryUrl,jdbcType=VARCHAR},
+                </if>
+            </set>
+
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

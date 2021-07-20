@@ -44,6 +44,19 @@ public class Repository implements Serializable {
      */
     private Project project;
 
+    /**
+     * 状态
+     */
+    private StatusEnum status;
+
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
 
     public Project getProject() {
         return project;

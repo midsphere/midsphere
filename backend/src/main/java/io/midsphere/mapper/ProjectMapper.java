@@ -1,8 +1,10 @@
 package io.midsphere.mapper;
 
 import io.midsphere.model.Project;
+import io.midsphere.model.vo.ProjectQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,4 +21,32 @@ public interface ProjectMapper {
      * @return Project
      */
     Optional<Project> findByProjectKey(String projectKey);
+
+
+    /**
+     * 保存工程
+     * @param project project
+     */
+    void insert(Project project);
+
+    /**
+     * 获取项目的数量
+     * @param queryParam queryParam
+     * @return long
+     */
+    long countByParam(ProjectQueryParam queryParam);
+
+    /**
+     * 分页查询 Project
+     * @param queryParam queryParam
+     * @return List
+     */
+    List<Project> findPage(ProjectQueryParam queryParam);
+
+    /**
+     * 根据 id 查找 Project
+     * @param id id
+     * @return Project
+     */
+    Optional<Project> findById(String id);
 }

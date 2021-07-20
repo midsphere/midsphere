@@ -22,6 +22,7 @@
         <mapper resource="mybatis/mapper/NodeMapper.xml" />
         <mapper resource="mybatis/mapper/ProjectMapper.xml" />
         <mapper resource="mybatis/mapper/RepositoryMapper.xml" />
+        <mapper resource="mybatis/mapper/ApplicationMapper.xml" />
     </mappers>
 
 
