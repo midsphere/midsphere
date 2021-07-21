@@ -12,6 +12,10 @@ import io.midsphere.model.Project;
 public interface ProjectService {
 
 
+    /**
+     * 分页查询项目
+     * @return PageDTO
+     */
     PageDTO<Project> findPage();
 
     /**
