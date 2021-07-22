@@ -1,6 +1,6 @@
 package io.midsphere.dto;
 
-import io.midsphere.model.vo.AbstractQueryParam;
+import io.midsphere.model.vo.AbstractQueryRequest;
 
 import java.io.Serializable;
 import java.util.List;
@@ -41,14 +41,14 @@ public class PageDTO<T> implements Serializable {
     /**
      * 查询参数
      */
-    private AbstractQueryParam queryParam;
+    private AbstractQueryRequest queryParam;
 
 
     public PageDTO() {
         super();
     }
 
-    public PageDTO(AbstractQueryParam queryParam, long count, List<T> data) {
+    public PageDTO(AbstractQueryRequest queryParam, long count, List<T> data) {
         super();
         this.queryParam = queryParam;
         this.page = queryParam.getPage();
@@ -58,11 +58,11 @@ public class PageDTO<T> implements Serializable {
         this.data = data;
     }
 
-    public AbstractQueryParam getQueryParam() {
+    public AbstractQueryRequest getQueryParam() {
         return queryParam;
     }
 
-    public void setQueryParam(AbstractQueryParam queryParam) {
+    public void setQueryParam(AbstractQueryRequest queryParam) {
         this.queryParam = queryParam;
     }
 

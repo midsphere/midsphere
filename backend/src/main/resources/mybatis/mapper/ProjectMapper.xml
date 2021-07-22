@@ -16,7 +16,7 @@
         WHERE project_key = #{projectKey,jdbcType=VARCHAR}
     </select>
 
-    <select id="countByParam" parameterType="ProjectQueryParam" resultType="long">
+    <select id="countByParam" parameterType="ProjectQueryRequest" resultType="long">
         select count(1) from midsphere_project
         <where>
             <if test="projectKey != null and projectKey != ''">
@@ -26,7 +26,7 @@
     </select>
 
 
-    <select id="findPage" parameterType="ProjectQueryParam" resultMap="BaseResultMap">
+    <select id="findPage" parameterType="ProjectQueryRequest" resultMap="BaseResultMap">
         select * from midsphere_project
         <where>
             <if test="projectKey != null and projectKey != ''">

@@ -11,7 +11,7 @@
     </resultMap>
 
 
-    <select id="countByParams" parameterType="RepositoryQueryParam" resultType="long">
+    <select id="countByParams" parameterType="RepositoryQueryRequest" resultType="long">
         SELECT COUNT(1) FROM midsphere_repository
         <where>
             <if test="projectKey != null and projectKey != ''">
@@ -21,7 +21,7 @@
     </select>
 
 
-    <select id="findPage" parameterType="RepositoryQueryParam" resultMap="BaseResultMap">
+    <select id="findPage" parameterType="RepositoryQueryRequest" resultMap="BaseResultMap">
         SELECT * FROM midsphere_repository
         <where>
             <if test="projectKey != null and projectKey != ''">

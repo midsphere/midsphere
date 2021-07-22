@@ -1,8 +1,8 @@
 package io.midsphere.mapper;
 
 
-import io.midsphere.model.Repository;
-import io.midsphere.model.vo.RepositoryQueryParam;
+import io.midsphere.code.model.Repository;
+import io.midsphere.code.model.RepositoryQueryRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,14 +20,14 @@ public interface RepositoryMapper {
      * @param queryParam queryParam
      * @return long
      */
-    long countByParams(RepositoryQueryParam queryParam);
+    long countByParams(RepositoryQueryRequest queryParam);
 
     /**
      * 分页查询仓库
      * @param queryParam queryParam
      * @return List
      */
-    List<Repository> findPage(RepositoryQueryParam queryParam);
+    List<Repository> findPage(RepositoryQueryRequest queryParam);
 
     /**
      * 根据 RepositoryUrl 查询仓库

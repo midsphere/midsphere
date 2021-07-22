@@ -13,9 +13,20 @@
     <!-- 别名设置 -->
     <typeAliases>
         <typeAlias type="org.apache.ibatis.type.EnumOrdinalTypeHandler" alias="EnumOrdinalTypeHandler" />
+        <package name="io.midsphere.project.model"/>
+        <package name="io.midsphere.project.vo"/>
+        <package name="io.midsphere.code.model"/>
+        <package name="io.midsphere.application.model"/>
+        <package name="io.midsphere.build.model"/>
         <package name="io.midsphere.model"/>
         <package name="io.midsphere.model.vo"/>
     </typeAliases>
+
+    <!-- 注册 Mybatis 自定义拦截器 -->
+    <plugins>
+        <plugin interceptor="io.midsphere.interceptor.MybatisInterceptor" />
+    </plugins>
+
 
     <!-- mapper 设置 -->
     <mappers>
@@ -23,6 +34,9 @@
         <mapper resource="mybatis/mapper/ProjectMapper.xml" />
         <mapper resource="mybatis/mapper/RepositoryMapper.xml" />
         <mapper resource="mybatis/mapper/ApplicationMapper.xml" />
+        <mapper resource="mybatis/mapper/BuildPipelineMapper.xml" />
+        <mapper resource="mybatis/mapper/BuildHistoryMapper.xml" />
+        <mapper resource="mybatis/mapper/BuildStageMapper.xml" />
     </mappers>
 
 

@@ -1,6 +1,6 @@
 package io.midsphere.mapper;
 
-import io.midsphere.model.Application;
+import io.midsphere.application.model.Application;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,7 +33,7 @@ public interface ApplicationMapper {
      * @return Application
      */
     Optional<Application> findByAppKeyAndProject(@Param("appKey") String appKey,
-                                                 @Param("projectId") String projectId);
+                                                 @Param("projectId") Integer projectId);
 
     /**
      * 保存应用
