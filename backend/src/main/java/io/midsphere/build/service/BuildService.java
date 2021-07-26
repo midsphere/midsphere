@@ -16,6 +16,10 @@ import java.util.List;
 public interface BuildService {
 
 
+
+    void execBuild();
+
+
     /**
      * 获取构建历史
      * @param queryRequest queryRequest

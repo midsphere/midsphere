@@ -2,6 +2,7 @@ package io.midsphere.build.model;
 
 
 import io.midsphere.application.model.Application;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -32,11 +33,13 @@ public class BuildPipeline implements Serializable {
     /**
      * 构建流水线创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
 
     /**
      * 构建流水线修改时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime modifyAt;
 
 

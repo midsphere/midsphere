@@ -32,6 +32,14 @@ public interface CodeProcessor {
     }
 
 
+    /**
+     * 克隆代码
+     * @param repositoryUrl repositoryUrl
+     */
+    default void cloneCode(String repositoryUrl) {
+
+    }
+
 
     /**
      * 版本控制类型

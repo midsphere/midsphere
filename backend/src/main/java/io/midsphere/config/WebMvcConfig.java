@@ -23,7 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilterFilterRegistrationBean() {
-
+        logger.info("method<corsFilterFilterRegistrationBean> register CorsFilter");
         CorsFilter corsFilter = new CorsFilter();
         FilterRegistrationBean<CorsFilter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
         filterFilterRegistrationBean.setFilter(corsFilter);
