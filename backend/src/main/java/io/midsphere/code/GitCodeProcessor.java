@@ -2,8 +2,14 @@ package io.midsphere.code;
 
 import io.midsphere.code.model.BaseTag;
 import io.midsphere.code.model.CodeBranch;
+import org.apache.catalina.User;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.transport.CredentialsProvider;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -41,6 +47,36 @@ public class GitCodeProcessor implements CodeProcessor {
     public void cloneCode(String repositoryUrl) {
 
 
+
+
+    }
+
+
+    /**
+     * 克隆仓库
+     * @param repoUrl repoUrl
+     * @param cloneDir cloneDir
+     * @param credentialsProvider 凭证
+     * @return Git
+     * @throws GitAPIException GitAPIException
+     */
+    private Git fromCloneRepository(String repoUrl, String cloneDir, CredentialsProvider credentialsProvider) throws GitAPIException {
+        return Git.cloneRepository()
+                .setCredentialsProvider(credentialsProvider)
+                .setURI(repoUrl)
+                .setGitDir(new File(cloneDir))
+                .call();
+    }
+
+
+    /**
+     * 创建 git 凭证
+     * @param username username
+     * @param password password
+     * @return CredentialsProvider
+     */
+    private CredentialsProvider credentialsProvider(String username, String password) {
+        return new UsernamePasswordCredentialsProvider(username, password);
     }
 
     /**

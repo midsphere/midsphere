@@ -30,12 +30,18 @@
     </select>
 
     <insert id="insert" parameterType="Application">
-        insert into midsphere_application(app_name, app_key, app_type, language, create_user, fk_project_id, create_at, modify_at)
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid(), '-', '') as id from dual
+        </selectKey>
+        insert into midsphere_application(app_name, app_key, app_type,
+                                          language, create_user, fk_project_id,
+                                          create_at, modify_at)
             values(#{appName,jdbcType=VARCHAR}, #{appKey,jdbcType=VARCHAR},
                    #{appType, javaType=AppTypeEnum, typeHandler=EnumOrdinalTypeHandler},
-                          #{app_language, javaType=LanguageEnum, typeHandler=EnumOrdinalTypeHandler},
-                          #{createUser,jdbcType=VARCHAR},
-                        #{project.id,jdbcType=VARCHAR},
-                          #{createAt}, #{modifyAt})
+                   #{app_language, javaType=LanguageEnum, typeHandler=EnumOrdinalTypeHandler},
+                   #{createUser,jdbcType=VARCHAR},
+                   #{project.id,jdbcType=VARCHAR},
+                   #{createAt},
+                   #{modifyAt})
     </insert>
 </mapper>
